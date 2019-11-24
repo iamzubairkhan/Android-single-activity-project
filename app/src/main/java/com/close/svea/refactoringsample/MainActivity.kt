@@ -5,11 +5,11 @@ import Places
 import android.content.Context
 import android.net.ConnectivityManager
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async
@@ -32,12 +32,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<RecyclerView>(R.id.places_recycler_view).layoutManager = LinearLayoutManager(applicationContext)
+        findViewById<RecyclerView>(R.id.places_recycler_view).layoutManager =
+            LinearLayoutManager(applicationContext)
         findViewById<TextView>(R.id.button).setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
-        val networkInfo: ConnectivityManager? = (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
+        val networkInfo: ConnectivityManager? =
+            (getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager)
         if (networkInfo?.activeNetworkInfo?.isConnected == true) {
             val job = GlobalScope.async(Dispatchers.IO) {
                 restClient.create(GetPlaces::class.java).getAllPlaces().execute().body()!!.place

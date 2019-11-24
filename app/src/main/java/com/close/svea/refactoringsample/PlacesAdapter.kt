@@ -1,6 +1,6 @@
 package com.close.svea.refactoringsample
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 import Place
 import android.view.LayoutInflater
 import android.view.View
