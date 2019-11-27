@@ -1,4 +1,4 @@
-package com.close.svea.refactoringsample.ui
+package com.close.svea.refactoringsample
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,14 +8,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.close.svea.refactoringsample.data.model.Place
 import com.close.svea.refactoringsample.databinding.RecyclerItemBinding
 
-class PlacesListAdapter : ListAdapter<Place, PlacesListAdapter.ViewHolder>(
-    PlacesDiffCallback()
-) {
+class PlacesListAdapter : ListAdapter<Place, PlacesListAdapter.ViewHolder>(PlacesDiffCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder.from(
-            parent
-        )
+        return ViewHolder.from(parent)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
