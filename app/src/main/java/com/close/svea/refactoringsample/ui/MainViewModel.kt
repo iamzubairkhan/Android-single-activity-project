@@ -1,23 +1,24 @@
-package com.close.svea.refactoringsample
+package com.close.svea.refactoringsample.ui
 
 import android.app.Application
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.close.svea.refactoringsample.R
+import com.close.svea.refactoringsample.data.PlacesRepository
 import com.close.svea.refactoringsample.data.model.Place
-import com.close.svea.refactoringsample.data.rest.PlacesApiClient
 import com.close.svea.refactoringsample.utils.NetworkUtils.isConnectedToNetwork
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var placesApiClient = PlacesApiClient()
+    private var placesRepository = PlacesRepository()
     var message: MutableLiveData<String> = MutableLiveData("")
     private val resources = getApplication<Application>().resources
 
     fun searchPlaces() {
         if (isConnectedToNetwork(getApplication())) {
-            placesApiClient.searchPlaces()
+            placesRepository.searchPlaces()
             message.value = resources.getString(R.string.connected)
         } else {
             Toast.makeText(getApplication(), R.string.not_connected, Toast.LENGTH_LONG).show()
@@ -26,11 +27,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     fun getPlacesLiveData(): LiveData<MutableList<Place>> {
-        return placesApiClient.getPlacesLiveData()
+        return placesRepository.getPlacesLiveData()
     }
 
     override fun onCleared() {
         super.onCleared()
-        placesApiClient.getPlacesLiveData().value?.clear()
+        placesRepository.getPlacesLiveData().value?.clear()
     }
 }
