@@ -5,6 +5,7 @@
 
     <data>
 
+        <import type="android.view.View" />
         <variable
             name="mainViewModel"
             type="com.close.svea.refactoringsample.ui.MainViewModel" />
@@ -25,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="@drawable/item_background_layer"
-                android:onClick="@{() -> mainViewModel.searchPlaces()}"
+                android:onClick="@{() -> mainViewModel.getAllPlaces()}"
                 android:text="@string/click_me"
                 android:textAllCaps="false"
                 android:textColor="@android:color/white"
@@ -45,7 +46,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:visibility="gone"
+            android:visibility="@{mainViewModel.isLoading() ? View.VISIBLE : View.GONE}"
             app:mk_color="@android:color/white"
             app:mk_type="TwinFishesSpinner" />
 

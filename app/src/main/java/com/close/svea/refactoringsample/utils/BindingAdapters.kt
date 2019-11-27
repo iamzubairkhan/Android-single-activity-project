@@ -6,8 +6,8 @@ import androidx.databinding.BindingAdapter
 object BindingAdapters {
     @BindingAdapter("android:visibility")
     @JvmStatic
-    fun setVisibility(view: View, message: String) {
-        if (message == "Try again!" || message == "Not connected!")
+    fun setVisibility(view: View, isLoading: Boolean) {
+        if (isLoading)
             view.visibility = View.VISIBLE
         else
             view.visibility = View.GONE

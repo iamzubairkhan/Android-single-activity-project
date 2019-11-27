@@ -19,12 +19,14 @@ class MainActivity : AppCompatActivity() {
             )
 
         val mainViewModel = ViewModelProviders.of(this).get(MainViewModel::class.java)
-        binding.mainViewModel = mainViewModel
-        binding.lifecycleOwner = this
         val adapter = PlacesListAdapter()
-        binding.placesRecyclerView.adapter = adapter
 
-        mainViewModel.getPlacesLiveData().observe(this,
+        binding.mainViewModel = mainViewModel
+        binding.placesRecyclerView.adapter = adapter
+        binding.lifecycleOwner = this
+
+        mainViewModel.placesLiveData.observe(
+            this,
             Observer {
                 it?.let {
                     adapter.submitList(it)
