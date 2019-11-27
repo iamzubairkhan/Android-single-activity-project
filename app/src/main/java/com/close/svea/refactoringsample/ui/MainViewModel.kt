@@ -6,15 +6,22 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.close.svea.refactoringsample.R
+import com.close.svea.refactoringsample.base.BaseApplication
 import com.close.svea.refactoringsample.data.PlacesRepository
 import com.close.svea.refactoringsample.data.model.Place
 import com.close.svea.refactoringsample.utils.NetworkUtils.isConnectedToNetwork
+import javax.inject.Inject
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private var placesRepository = PlacesRepository()
+    @Inject
+    lateinit var placesRepository: PlacesRepository
     var message: MutableLiveData<String> = MutableLiveData("")
     private val resources = getApplication<Application>().resources
+
+    init {
+        BaseApplication.appComponent.inject(this)
+    }
 
     fun searchPlaces() {
         if (isConnectedToNetwork(getApplication())) {
