@@ -19,8 +19,8 @@ the user, once a button is clicked.
 
 ### Tools used
 
-* Language              Kotlin
-* Architecture          MVVM with Databinding
-* For Rest API calls    Retrofit
-* Multithreading        Kotlin Coroutines
-* Dependency Injection  Dagger
+* Kotlin
+* MVVM Architecture with Databinding
+* Retrofit for REST API calls
+* Kotlin Coroutines for background work
+* Dagger 2 for Dependency Injection
