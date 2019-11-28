@@ -2,8 +2,8 @@ package com.close.svea.refactoringsample.base
 
 import android.app.Application
 
-import com.close.svea.refactoringsample.di.AppComponent
-import com.close.svea.refactoringsample.di.DaggerAppComponent
+import com.close.svea.refactoringsample.di.component.AppComponent
+import com.close.svea.refactoringsample.di.component.DaggerAppComponent
 
 class BaseApplication : Application() {
 

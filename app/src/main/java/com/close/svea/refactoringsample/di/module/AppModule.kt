@@ -1,4 +1,4 @@
-package com.close.svea.refactoringsample.di
+package com.close.svea.refactoringsample.di.module
 
 
 import com.close.svea.refactoringsample.data.PlacesRepository
