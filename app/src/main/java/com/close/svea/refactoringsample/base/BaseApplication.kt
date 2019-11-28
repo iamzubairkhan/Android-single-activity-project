@@ -8,7 +8,11 @@ import com.close.svea.refactoringsample.di.component.DaggerAppComponent
 class BaseApplication : Application() {
 
     companion object {
-        lateinit var appComponent: AppComponent
+        private lateinit var appComponent: AppComponent
+        fun getAppInjector(): AppComponent {
+            return appComponent
+        }
+
     }
 
     override fun onCreate() {
