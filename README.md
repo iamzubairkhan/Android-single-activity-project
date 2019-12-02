@@ -17,10 +17,11 @@ the user, once a button is clicked.
 * Maintainability
 
 
-### Tools used
+### Technologies used
 
 * Kotlin
 * MVVM Architecture with Databinding
 * Retrofit for REST API calls
 * Kotlin Coroutines for background work
 * Dagger 2 for Dependency Injection
+* AndroidX and Mockk.io for Unit Testing

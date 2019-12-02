@@ -66,7 +66,7 @@ dependencies {
     testImplementation "com.google.truth:truth:$truthVersion"
     testImplementation "com.jraska.livedata:testing-ktx:$liveDataTestingVersion"
 
-    // AndroidX Test Dependencies
+    // AndroidX Test
     testImplementation "androidx.test.ext:junit-ktx:$androidXTestExtKotlinRunnerVersion"
     testImplementation "androidx.arch.core:core-testing:$archTestingVersion"
 }
