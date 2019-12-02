@@ -46,7 +46,7 @@
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_gravity="center"
-            android:visibility="@{mainViewModel.isLoading() ? View.VISIBLE : View.GONE}"
+            android:visibility="@{mainViewModel.isLoadingLiveData() ? View.VISIBLE : View.GONE}"
             app:mk_color="@android:color/white"
             app:mk_type="TwinFishesSpinner" />
 
