@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import com.close.svea.refactoringsample.R
 import com.close.svea.refactoringsample.base.BaseApplication.Companion.getAppInjector
 import com.close.svea.refactoringsample.databinding.ActivityMainBinding
@@ -27,8 +26,7 @@ class MainActivity : AppCompatActivity() {
                 R.layout.activity_main
             )
 
-        val mainViewModel =
-            ViewModelProviders.of(this, viewModelFactory).get(MainViewModel::class.java)
+        val mainViewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         val adapter = PlacesListAdapter()
 
         binding.mainViewModel = mainViewModel

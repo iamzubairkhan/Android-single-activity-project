@@ -10,6 +10,7 @@ import com.close.svea.refactoringsample.R
 import com.close.svea.refactoringsample.data.PlacesRepository
 import com.close.svea.refactoringsample.data.model.Place
 import com.close.svea.refactoringsample.utils.NetworkUtils.isConnectedToNetwork
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -29,7 +30,7 @@ class MainViewModel @Inject constructor(
     fun getAllPlaces() {
         if (isConnectedToNetwork(application)) {
             _isLoadingLiveData.value = true
-            viewModelScope.launch {
+            viewModelScope.launch(Dispatchers.Main) {
                 val result = placesRepository.getAllPlaces()
                 if (result.isNotEmpty())
                     _placesLiveData.value = result
