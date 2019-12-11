@@ -9,13 +9,14 @@ import androidx.lifecycle.viewModelScope
 import com.close.svea.refactoringsample.R
 import com.close.svea.refactoringsample.data.PlacesRepository
 import com.close.svea.refactoringsample.data.model.Place
-import com.close.svea.refactoringsample.utils.NetworkUtils.isConnectedToNetwork
+import com.close.svea.refactoringsample.utils.NetworkUtils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(
     private val context: Context,
-    private val placesRepository: PlacesRepository
+    private val placesRepository: PlacesRepository,
+    private val networkUtils: NetworkUtils
 ) : ViewModel() {
 
     private val _placesLiveData: MutableLiveData<MutableList<Place>> = MutableLiveData()
@@ -27,7 +28,7 @@ class MainViewModel(
         get() = _isLoadingLiveData
 
     fun getAllPlaces() {
-        if (isConnectedToNetwork(context)) {
+        if (networkUtils.isConnectedToNetwork()) {
             _isLoadingLiveData.value = true
             viewModelScope.launch(Dispatchers.Main) {
                 val result = placesRepository.getAllPlaces()

@@ -3,9 +3,9 @@ package com.close.svea.refactoringsample.utils
 import android.content.Context
 import android.net.ConnectivityManager
 
-object NetworkUtils {
+class NetworkUtils(private val context: Context) {
 
-    fun isConnectedToNetwork(context: Context): Boolean {
+    fun isConnectedToNetwork(): Boolean {
         val connectivityManager =
             context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
 

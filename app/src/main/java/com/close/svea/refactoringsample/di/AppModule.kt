@@ -5,6 +5,7 @@ import com.close.svea.refactoringsample.data.rest.PlacesApiClient
 import com.close.svea.refactoringsample.data.rest.PlacesApiService
 import com.close.svea.refactoringsample.ui.MainViewModel
 import com.close.svea.refactoringsample.utils.AppConstants
+import com.close.svea.refactoringsample.utils.NetworkUtils
 import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -24,5 +25,6 @@ val appModule = module {
     single { placesApiService }
     single { PlacesApiClient(placesApiService = get()) }
     single { PlacesRepository(placesApiClient = get()) }
-    viewModel { MainViewModel(androidContext(), placesRepository = get()) }
+    single { NetworkUtils(androidContext()) }
+    viewModel { MainViewModel(androidContext(), placesRepository = get(), networkUtils = get()) }
 }
