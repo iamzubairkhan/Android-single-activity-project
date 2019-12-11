@@ -51,9 +51,8 @@ dependencies {
     //For viewModelScope
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
 
-    // Dagger
-    implementation "com.google.dagger:dagger:$daggerVersion"
-    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
+    // Koin
+    implementation "org.koin:koin-androidx-viewmodel:2.0.1"
 
     // Progressbar
     implementation "com.tuyenmonkey:mkloader:$progressBarVersion"

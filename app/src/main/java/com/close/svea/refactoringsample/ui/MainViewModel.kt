@@ -1,6 +1,6 @@
 package com.close.svea.refactoringsample.ui
 
-import android.app.Application
+import android.content.Context
 import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -12,10 +12,9 @@ import com.close.svea.refactoringsample.data.model.Place
 import com.close.svea.refactoringsample.utils.NetworkUtils.isConnectedToNetwork
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-class MainViewModel @Inject constructor(
-    private val application: Application,
+class MainViewModel(
+    private val context: Context,
     private val placesRepository: PlacesRepository
 ) : ViewModel() {
 
@@ -28,18 +27,18 @@ class MainViewModel @Inject constructor(
         get() = _isLoadingLiveData
 
     fun getAllPlaces() {
-        if (isConnectedToNetwork(application)) {
+        if (isConnectedToNetwork(context)) {
             _isLoadingLiveData.value = true
             viewModelScope.launch(Dispatchers.Main) {
                 val result = placesRepository.getAllPlaces()
                 if (result.isNotEmpty())
                     _placesLiveData.value = result
                 else
-                    Toast.makeText(application, R.string.try_again, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(context, R.string.try_again, Toast.LENGTH_SHORT).show()
                 _isLoadingLiveData.value = false
             }
         } else
-            Toast.makeText(application, R.string.not_connected, Toast.LENGTH_SHORT).show()
+            Toast.makeText(context, R.string.not_connected, Toast.LENGTH_SHORT).show()
     }
 
     override fun onCleared() {

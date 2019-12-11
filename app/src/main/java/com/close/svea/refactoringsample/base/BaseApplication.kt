@@ -1,26 +1,18 @@
 package com.close.svea.refactoringsample.base
 
 import android.app.Application
-
-import com.close.svea.refactoringsample.di.component.AppComponent
-import com.close.svea.refactoringsample.di.component.DaggerAppComponent
+import com.close.svea.refactoringsample.di.appModule
+import org.koin.android.ext.koin.androidContext
+import org.koin.core.context.startKoin
 
 class BaseApplication : Application() {
 
-    companion object {
-        private lateinit var appComponent: AppComponent
-        fun getAppInjector(): AppComponent {
-            return appComponent
-        }
-
-    }
-
     override fun onCreate() {
         super.onCreate()
-
-        appComponent = DaggerAppComponent.builder()
-            .application(this)
-            .build()
+        startKoin {
+            androidContext(this@BaseApplication)
+            modules(listOf(appModule))
+        }
     }
 
 }
