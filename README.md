@@ -24,4 +24,5 @@ the user, once a button is clicked.
 * Retrofit for REST API calls
 * Kotlin Coroutines for background work
 * Dagger 2 for Dependency Injection
+* Koin for Dependency Injection(Check separate branch)
 * AndroidX and Mockk.io for Unit Testing
