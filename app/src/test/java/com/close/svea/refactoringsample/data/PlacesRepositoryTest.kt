@@ -5,13 +5,13 @@ import io.mockk.clearMocks
 import io.mockk.coEvery
 import io.mockk.coVerify
 import io.mockk.mockk
-import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.After
 import org.junit.Test
+import org.koin.core.context.stopKoin
+import org.koin.test.KoinTest
 
-@ExperimentalCoroutinesApi
-class PlacesRepositoryTest {
+class PlacesRepositoryTest : KoinTest {
 
     private val placesApiClient: PlacesApiClient = mockk()
     private val placesRepository = PlacesRepository(placesApiClient)
@@ -24,5 +24,8 @@ class PlacesRepositoryTest {
     }
 
     @After
-    fun teardown() = clearMocks(placesApiClient)
+    fun teardown() {
+        clearMocks(placesApiClient)
+        stopKoin()
+    }
 }
